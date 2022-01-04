@@ -142,11 +142,11 @@ RUN conda install --quiet --yes \
     'jupyterhub=0.9.4' \
     'jupyterlab=0.35.4'
 
-RUN conda install --quiet --yes --file requirements.txt && \
-    conda clean -tipsy && \
-    jupyter labextension install @jupyterlab/hub-extension@^0.12.0 && \
-    npm cache clean --force && \
-    jupyter notebook --generate-config && \
+RUN conda install --quiet --yes --file requirements.txt
+RUN conda clean -tipsy
+RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
+RUN npm cache clean --force
+RUN jupyter notebook --generate-config && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
     rm -rf /home/$NB_USER/.cache/yarn
 
