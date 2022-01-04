@@ -183,6 +183,9 @@ RUN jupyter-nbextension enable tree-filter/index && \
     jupyter-nbextension enable move_selected_cells/main && \
     jupyter-nbextension enable scratchpad/main 
 
+RUN pip install jupyter_http_over_ws
+RUN jupyter serverextension enable --py jupyter_http_over_ws
+
 # Add local files as late as possible to avoid cache busting
 COPY bin/start.sh /usr/local/bin/
 COPY bin/start-notebook.sh /usr/local/bin/

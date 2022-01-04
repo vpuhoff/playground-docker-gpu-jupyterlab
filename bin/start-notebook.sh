@@ -9,8 +9,11 @@ if [[ ! -z "${JUPYTERHUB_API_TOKEN}" ]]; then
   exec /usr/local/bin/start-singleuser.sh $*
 else
   if [[ ! -z "${JUPYTER_ENABLE_LAB}" ]]; then
-    . /usr/local/bin/start.sh jupyter lab $*
+    . /usr/local/bin/start.sh jupyter lab --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888 --NotebookApp.port_retries=0 $*
   else
-    . /usr/local/bin/start.sh jupyter notebook $*
+    . /usr/local/bin/start.sh jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' --port=8888 --NotebookApp.port_retries=0 $*
   fi
 fi
+
+
+ 

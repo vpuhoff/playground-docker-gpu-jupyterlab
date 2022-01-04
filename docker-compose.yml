@@ -16,8 +16,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./fastai_courses:/home/$NB_USER/fastai_courses
-      - ./datasets:/home/$NB_USER/datasets
-      - ./notebooks:/home/$NB_USER/notebooks
-      - ./config/keras.json:/home/$NB_USER/.keras/keras.json
+      - /mnt/p/datasets:/home/$NB_USER/datasets
+      - /mnt/p/jupiterlab:/home/$NB_USER/notebooks
+      #- ./config/keras.json:/home/$NB_USER/.keras/keras.json
 
