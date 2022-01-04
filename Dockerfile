@@ -142,7 +142,7 @@ RUN conda install --quiet --yes \
     'jupyterhub=0.9.4' \
     'jupyterlab=0.35.4'
 
-RUN conda install --yes --file requirements.txt -v
+RUN conda install --yes --file requirements.txt --debug
 RUN conda clean -tipsy
 RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
 RUN npm cache clean --force
