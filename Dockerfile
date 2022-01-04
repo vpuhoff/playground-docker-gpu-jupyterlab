@@ -108,14 +108,13 @@ USER $NB_UID
 #    setuptools
 
 # Install conda as jovyan and check the md5 sum provided on the download site
-RUN conda install python=3.7
 
 ENV MINICONDA_VERSION 4.5.11
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     echo "e1045ee415162f944b6aebfe560b8fee *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
     /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
-    rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+    rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && $CONDA_DIR/bin/conda install python=3.7 && \
     $CONDA_DIR/bin/conda config --system --prepend channels conda-forge && \
     $CONDA_DIR/bin/conda config --system --set auto_update_conda false && \
     $CONDA_DIR/bin/conda config --system --set show_channel_urls true && \
