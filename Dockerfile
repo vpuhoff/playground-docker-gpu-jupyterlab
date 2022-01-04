@@ -136,9 +136,9 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
 COPY requirements.txt .
-RUN conda upgrade --all
+RUN conda upgrade --all --debug
 
-RUN conda install --quiet --yes \
+RUN conda install --quiet --yes --debug \
     'notebook=5.7.0' \
     'jupyterhub=0.9.4' \
     'jupyterlab=0.35.4'
