@@ -136,6 +136,7 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
 COPY requirements.txt .
+RUN conda upgrade --all
 
 RUN conda install --quiet --yes \
     'notebook=5.7.0' \
