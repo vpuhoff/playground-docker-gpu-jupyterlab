@@ -122,7 +122,7 @@ RUN cd /tmp && \
     conda clean -tipsy && \
     rm -rf /home/$NB_USER/.cache/yarn
 
-RUN conda install -c anaconda python=3.7
+RUN conda install python=3.7
 
 # Install Tini
 RUN conda install --quiet --yes 'tini=0.18.0' && \
