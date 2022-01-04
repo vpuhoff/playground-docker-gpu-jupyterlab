@@ -108,6 +108,8 @@ USER $NB_UID
 #    setuptools
 
 # Install conda as jovyan and check the md5 sum provided on the download site
+RUN conda install python=3.7
+
 ENV MINICONDA_VERSION 4.5.11
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
@@ -122,7 +124,7 @@ RUN cd /tmp && \
     conda clean -tipsy && \
     rm -rf /home/$NB_USER/.cache/yarn
 
-RUN conda install python=3.7
+
 
 # Install Tini
 RUN conda install --quiet --yes 'tini=0.18.0' && \
