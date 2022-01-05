@@ -136,28 +136,21 @@ RUN conda install --quiet --yes 'tini=0.18.0' && \
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
 COPY requirements.txt .
-RUN conda upgrade --all --debug
-
-RUN conda install --quiet --yes --debug \
-    'notebook=5.7.0' \
-    'jupyterhub=0.9.4' \
-    'jupyterlab=0.35.4'
-
-RUN conda install  --quiet --yes --debug \
-    'ipywidgets' 
-
-RUN conda install  --quiet --yes --debug \
-    'jupyter_contrib_nbextensions' \
-    'jupyter_nbextensions_configurator' 
-
-
-RUN conda install  --quiet --yes --debug \
-    'widgetsnbextension' \
-    'yapf' 
-    #'rise'
+#RUN conda upgrade --all --debug
 
 RUN conda update -n base -c defaults conda
 COPY config/.condarc  /home/$NB_USER/.condarc
+
+RUN conda install --quiet --yes --debug \
+    'notebook' \
+    'jupyterhub' \
+    'jupyterlab' \
+    'ipywidgets' \
+    'jupyter_contrib_nbextensions' \
+    'jupyter_nbextensions_configurator' \
+    'widgetsnbextension' \
+    'yapf' 
+    #'rise'
 
 RUN conda install  --quiet --yes --debug \
     'keras' \
