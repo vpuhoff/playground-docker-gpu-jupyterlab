@@ -61,12 +61,12 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
-ARG PYTHON=python3
-#ARG PIP=pip3
+ARG PYTHON=python3.7
+ARG PIP=pip3
 #
-#RUN apt-get update && apt-get install -y \
-#    ${PYTHON} \
-#    ${PYTHON}-pip
+RUN apt-get update && apt-get install -y \
+   ${PYTHON} \
+   ${PYTHON}-pip
 
 # Configure environment
 ENV CONDA_DIR=/opt/conda \
@@ -102,10 +102,10 @@ COPY config/theanorc /home/$NB_USER/.theanorc
 USER $NB_UID
 
 
-# RUN ${PIP} install --upgrade \
-#    pip \
-#    tensorflow-gpu \
-#    setuptools
+RUN ${PIP} install --upgrade \
+   pip \
+   tensorflow-gpu \
+   setuptools
 
 # Install conda as jovyan and check the md5 sum provided on the download site
 
