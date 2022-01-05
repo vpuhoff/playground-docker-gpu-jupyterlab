@@ -62,7 +62,7 @@ RUN apt-get update && \
     apt-get install libnvinfer4=4.1.2-1+cuda9.0 && \
     apt-get update && \
     apt-get install -y nodejs
-
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 RUN nvm install 14.0
 #ARG PYTHON=python3
 #ARG PIP=pip3
