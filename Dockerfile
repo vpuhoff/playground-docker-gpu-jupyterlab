@@ -166,7 +166,10 @@ RUN conda install --quiet --yes --debug \
 #     'tqdm'
 
 # RUN conda install  --quiet --yes --file requirements.txt --debug
-RUN apt-get install nvm
+
+RUN apt-get update && \
+    apt-get install nodejs
+
 RUN nvm install 14.0
 RUN conda clean -tipsy
 RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
