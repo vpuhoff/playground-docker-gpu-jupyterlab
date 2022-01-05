@@ -59,9 +59,8 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
 RUN apt-get update && \
     apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
     apt-get update && \
-    apt-get install libnvinfer4=4.1.2-1+cuda9.0 && \
-    apt-get update && \
-    apt-get install -y nodejs
+    apt-get install libnvinfer4=4.1.2-1+cuda9.0 
+
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 RUN nvm install 14.0
 #ARG PYTHON=python3
