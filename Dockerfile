@@ -57,10 +57,12 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
 RUN apt-get update && \
-    apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
-    apt-get update && \
-    apt-get install libnvinfer4=4.1.2-1+cuda9.0
+    apt-get install \
+        nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 \
+        libnvinfer4=4.1.2-1+cuda9.0 \
+        nodejs
 
+RUN nvm install 14.0
 #ARG PYTHON=python3
 #ARG PIP=pip3
 #
@@ -167,10 +169,7 @@ RUN conda install --quiet --yes --debug \
 
 # RUN conda install  --quiet --yes --file requirements.txt --debug
 
-RUN apt-get update && \
-    apt-get install nodejs
 
-RUN nvm install 14.0
 RUN conda clean -tipsy
 RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
 RUN npm cache clean --force
