@@ -61,7 +61,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
-ARG PYTHON=python3.7
+ARG PYTHON=python3-7
 ARG PIP=pip3
 #
 RUN apt-get update && apt-get install -y \
