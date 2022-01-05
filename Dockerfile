@@ -153,8 +153,8 @@ RUN conda install  --quiet --yes --debug \
 
 RUN conda install  --quiet --yes --debug \
     'widgetsnbextension' \
-    'yapf' \
-    'rise'
+    'yapf' 
+    #'rise'
 
 RUN conda install  --quiet --yes --debug \
     'keras' \
