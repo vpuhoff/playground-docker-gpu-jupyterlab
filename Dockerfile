@@ -154,7 +154,7 @@ RUN conda install --quiet --yes --debug \
 
 RUN conda install  --quiet --yes --debug \
     'keras' \
-    'tensorflow-gpu==2.7.0' \
+    'tensorflow-gpu==2.4.1' \
     'theano==1.0.5'
 
 RUN conda install  --quiet --yes --debug \
