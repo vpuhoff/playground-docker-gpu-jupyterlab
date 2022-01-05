@@ -161,8 +161,8 @@ COPY config/.condarc  /home/$NB_USER/.condarc
 
 RUN conda install  --quiet --yes --debug \
     'keras' \
-    'tensorflow-gpu=1.12.0' \
-    'theano==0.9'
+    'tensorflow-gpu' \
+    'theano'
 
 RUN conda install  --quiet --yes --debug \
     'bcolz' \
