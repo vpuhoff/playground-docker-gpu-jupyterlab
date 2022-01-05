@@ -1,12 +1,12 @@
-bcolz
+# bcolz
 keras
-matplotlib
-pandas
-pillow
-scikit-learn
+# matplotlib
+# pandas
+# pillow
+# scikit-learn
 tensorflow-gpu=1.12.0
 theano==0.9
-tqdm
+# tqdm
 
 # notebooks extensions
 ipywidgets
