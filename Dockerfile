@@ -145,7 +145,7 @@ RUN conda install --quiet --yes --debug \
     'notebook' \
     'jupyterhub' \
     'jupyterlab' \
-    'ipywidgets' \
+    'ipywidgets==7.6.5' \
     'jupyter_contrib_nbextensions' \
     'jupyter_nbextensions_configurator' \
     'widgetsnbextension' \
@@ -154,8 +154,8 @@ RUN conda install --quiet --yes --debug \
 
 RUN conda install  --quiet --yes --debug \
     'keras' \
-    'tensorflow-gpu' \
-    'theano'
+    'tensorflow-gpu==2.7.0' \
+    'theano==1.0.5'
 
 RUN conda install  --quiet --yes --debug \
     'bcolz' \
