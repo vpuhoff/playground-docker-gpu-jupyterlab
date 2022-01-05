@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -y \
    ${PYTHON} \
    ${PYTHON}-pip
 
-RUN pip install --upgrade pip
+RUN ${PIP} install --upgrade pip
 
 # Configure environment
 ENV CONDA_DIR=/opt/conda \
