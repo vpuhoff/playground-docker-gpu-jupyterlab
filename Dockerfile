@@ -143,7 +143,33 @@ RUN conda install --quiet --yes --debug \
     'jupyterhub=0.9.4' \
     'jupyterlab=0.35.4'
 
-RUN conda install --yes --file requirements.txt --debug
+RUN conda install  --quiet --yes --debug \
+    'ipywidgets' 
+
+RUN conda install  --quiet --yes --debug \
+    'jupyter_contrib_nbextensions' \
+    'jupyter_nbextensions_configurator' 
+
+
+RUN conda install  --quiet --yes --debug \
+    'widgetsnbextension' \
+    'yapf' \
+    'rise'
+
+RUN conda install  --quiet --yes --debug \
+    'keras' \
+    'tensorflow-gpu=1.12.0' \
+    'theano==0.9'
+
+RUN conda install  --quiet --yes --debug \
+    'bcolz' \
+    'matplotlib' \
+    'pandas' \
+    'pillow' \
+    'scikit-learn' \
+    'tqdm'
+
+RUN conda install  --quiet --yes --file requirements.txt --debug
 RUN conda clean -tipsy
 RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
 RUN npm cache clean --force
