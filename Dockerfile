@@ -155,6 +155,7 @@ RUN conda install  --quiet --yes --debug \
     'widgetsnbextension' \
     'yapf' 
     #'rise'
+RUN conda update -n base -c defaults conda
 
 RUN conda install  --quiet --yes --debug \
     'keras' \
