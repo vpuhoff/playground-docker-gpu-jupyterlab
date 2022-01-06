@@ -145,8 +145,8 @@ COPY config/.condarc  /home/$NB_USER/.condarc
 
 RUN conda install --quiet --yes --debug \
     'notebook' \
-    'jupyterhub' \
-    'jupyterlab' \
+    'jupyterhub==2.0.1' \
+    'jupyterlab==3.2.5' \
     'ipywidgets==7.6.5' \
     'jupyter_contrib_nbextensions' \
     'jupyter_nbextensions_configurator' \
