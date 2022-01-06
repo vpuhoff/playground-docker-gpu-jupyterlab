@@ -62,7 +62,7 @@ RUN apt-get update && \
     apt-get install libnvinfer4=4.1.2-1+cuda9.0 
 
 ARG NVM_DIR=/etc/bin/nvm
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+RUN mkdir $NVM_DIR && wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 RUN $NVM_DIR/nvm install 14.0
 #ARG PYTHON=python3
 #ARG PIP=pip3
