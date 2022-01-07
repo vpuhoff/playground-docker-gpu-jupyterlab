@@ -59,11 +59,10 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
 RUN apt-get update && \
     apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
     apt-get update && \
-    apt-get install libnvinfer4=4.1.2-1+cuda9.0 
+    apt-get install libnvinfer4=4.1.2-1+cuda9.0 && \
+    apt-get update && \
+    apt-get install -y nodejs npm 
 
-ARG NVM_DIR=/opt/nvm
-RUN mkdir $NVM_DIR && wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-RUN $NVM_DIR/nvm install 14.0
 #ARG PYTHON=python3
 #ARG PIP=pip3
 #
@@ -153,6 +152,9 @@ RUN conda install --quiet --yes --debug \
     'jupyter_nbextensions_configurator' \
     'widgetsnbextension' \
     'yapf' 
+
+RUN conda install --quiet --yes --debug \
+    'tornado >=6.1.0' 
     #'rise'
 
 # RUN conda install  --quiet --yes --debug \
@@ -172,7 +174,7 @@ RUN conda install --quiet --yes --debug \
 
 
 RUN conda clean -tipsy
-RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
+#RUN jupyter labextension install @jupyterlab/hub-extension@^0.12.0
 RUN npm cache clean --force
 RUN jupyter notebook --generate-config && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
@@ -189,7 +191,7 @@ RUN fix-permissions /home/$NB_USER && \
 RUN jupyter-nbextension enable tree-filter/index && \
     jupyter-nbextension enable code_prettify/code_prettify && \
     jupyter-nbextension enable help_panel/help_panel && \
-    jupyter-nbextension enable highlight_selected_word/main --highlight_selected_word.use_toggle_hotkey=true && \
+    #jupyter-nbextension enable highlight_selected_word/main --highlight_selected_word.use_toggle_hotkey=true && \
     jupyter-nbextension enable autosavetime/main && \
     jupyter-nbextension enable livemdpreview/livemdpreview && \
     jupyter-nbextension enable printview/main && \
@@ -212,6 +214,8 @@ RUN jupyter-nbextension enable tree-filter/index && \
     jupyter-nbextension enable hinterland/hinterland && \
     jupyter-nbextension enable move_selected_cells/main && \
     jupyter-nbextension enable scratchpad/main 
+
+RUN apt-get update && apt-get install -y clang-9 llvm-9 llvm-9-dev llvm-9-tools
 
 RUN pip install jupyter_http_over_ws
 RUN jupyter serverextension enable --py jupyter_http_over_ws
