@@ -3,7 +3,7 @@
 # https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile 
 # https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/dockerfiles/dockerfiles/nvidia-jupyter.Dockerfile
 
-FROM nvidia/cuda:9.0-base-ubuntu16.04
+FROM nvidia/cuda:11.4.2-cudnn8-devel-ubuntu20.04
 
 ARG NB_USER="jovyan"
 ARG NB_UID="1000"
@@ -34,17 +34,17 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     fonts-liberation \
     # Pick up some TF dependencies
     build-essential \
-    cuda-command-line-tools-9-0 \
-    cuda-cublas-9-0 \
-    cuda-cufft-9-0 \
-    cuda-curand-9-0 \
-    cuda-cusolver-9-0 \
-    cuda-cusparse-9-0 \
-    libcudnn7=7.2.1.38-1+cuda9.0 \
-    libnccl2=2.2.13-1+cuda9.0 \
+    cuda-command-line-tools-11-0 \
+    # cuda-cublas \
+    # cuda-cufft \
+    # cuda-curand \
+    # cuda-cusolver \
+    # cuda-cusparse \
+    #libcudnn7=7.2.1.38-1+cuda9.0 \
+    #libnccl2=2.2.13-1+cuda9.0 \
     libfreetype6-dev \
     libhdf5-serial-dev \
-    libpng12-dev \
+    #libpng12-dev \
     libzmq3-dev \
     pkg-config \
     software-properties-common \
@@ -56,11 +56,11 @@ RUN apt-get update && apt-get -yq dist-upgrade \
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
+# RUN apt-get update && \
+#     apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
+#     apt-get update && \
+#     apt-get install libnvinfer4=4.1.2-1+cuda9.0 && \
 RUN apt-get update && \
-    apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
-    apt-get update && \
-    apt-get install libnvinfer4=4.1.2-1+cuda9.0 && \
-    apt-get update && \
     apt-get install -y nodejs npm 
 
 #ARG PYTHON=python3
@@ -215,9 +215,11 @@ RUN jupyter-nbextension enable tree-filter/index && \
     jupyter-nbextension enable move_selected_cells/main && \
     jupyter-nbextension enable scratchpad/main 
 
-RUN apt-get update && apt-get install -y clang-9 llvm-9 llvm-9-dev llvm-9-tools
+RUN apt-get update && apt-get install -y clang-9 llvm-9 llvm-9-dev llvm-9-tools git
 
 RUN pip install jupyter_http_over_ws
+RUN pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+
 RUN jupyter serverextension enable --py jupyter_http_over_ws
 
 # Add local files as late as possible to avoid cache busting
