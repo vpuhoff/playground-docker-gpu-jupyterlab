@@ -3,7 +3,7 @@
 # https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile 
 # https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/dockerfiles/dockerfiles/nvidia-jupyter.Dockerfile
 
-FROM nvidia/cuda:11.4.2-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:10.1-runtime-ubuntu18.04
 
 ARG NB_USER="jovyan"
 ARG NB_UID="1000"
@@ -217,10 +217,16 @@ RUN jupyter-nbextension enable tree-filter/index && \
 
 RUN apt-get update && apt-get install -y clang-9 llvm-9 llvm-9-dev llvm-9-tools git
 
+
+
 RUN pip install jupyter_http_over_ws
 RUN pip install torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
 
 RUN jupyter serverextension enable --py jupyter_http_over_ws
+
+#RUN curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | apt-key add - distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+#RUN curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+#RUN apt-get update && apt-get install -y nvidia-container-runtime nvidia-container-toolkit nvidia-cuda-toolkit
 
 # Add local files as late as possible to avoid cache busting
 COPY bin/start.sh /usr/local/bin/
